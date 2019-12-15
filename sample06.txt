@@ -1,12 +1,16 @@
 provider "aws" {
-  region = "eu-west-2"
+  region = "eu-west-1"
+}
 
-data "aws_ami" "ubuntu" {
+data "aws_availability_zones" "available" {}
+
+data "aws_ami" "latest-amazon-linux2" {
   most_recent = true
+  owners      = ["137112412989"] # Amazon
 
   filter {
     name   = "name"
-    values = ["ubuntu/images/hvm-ssd/ubuntu-trusty-14.04-amd64-server-*"]
+    values = ["amzn2-ami-hvm-*"]
   }
 
   filter {
@@ -14,14 +18,8 @@ data "aws_ami" "ubuntu" {
     values = ["hvm"]
   }
 
-  owners = ["099720109477"] # Canonical
-}
-
-resource "aws_instance" "web" {
-  ami           = "${data.aws_ami.ubuntu.id}"
-  instance_type = "t2.micro"
-
-  tags = {
-    Name = "HelloWorld"
+  filter {
+    name   = "architecture"
+    values = ["x86_64"]
   }
 }
