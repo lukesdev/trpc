@@ -30,6 +30,3 @@ resource "aws_security_group" "allow_ssh" {
   }
 }
 
-output "showPublicIP" {
-  value = "${aws_instance.ec2.*.public_dns}"
-}
