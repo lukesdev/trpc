@@ -1,8 +1,8 @@
-provider "aws" {
-    region = "eu-west-1"
-    access_key = ""
-    secret_key = ""
-}
+#provider "aws" {
+#    region = "eu-west-1"
+#    access_key = ""
+#    secret_key = ""
+#}
 resource "aws_instance" "ec2" { # I called name "ec2", you can change your own name
   ami = "ami-0dad20bd1b9c8c004" # Image: Ubuntu Server 18.04 LTS (HVM), SSD Volume Type
   instance_type = "t2.micro" # VM Spec
